@@ -1,21 +1,69 @@
-/* 新規追加 */
-/* カードヘッダー用テーマ */
+/* ===================================
+   カラーテーマ（カードヘッダー・ボタン）
+=================================== */
 .header-pink    { background-color: #f8d7da !important; }
 .header-green   { background-color: #d4edda !important; }
 .header-blue    { background-color: #d1ecf1 !important; }
 .header-yellow  { background-color: #fff3cd !important; }
 
-/* フィルターボタン用テーマ */
 .btn-pink       { background-color: #f8d7da !important; color: #721c24 !important; }
 .btn-green      { background-color: #d4edda !important; color: #155724 !important; }
 .btn-blue       { background-color: #d1ecf1 !important; color: #0c5460 !important; }
 .btn-yellow     { background-color: #fff3cd !important; color: #856404 !important; }
 
-/* ゲーム風背景とフォント */
+/* ===================================
+   ゲーム風テーマ（背景・フォント・装飾）
+=================================== */
+body.game-theme {
+  background: url('/images/parchment-bg.jpg') no-repeat center center fixed;
+  background-size: cover;
+  font-family: 'Cinzel', serif;
+  color: #3e2f1c;
+}
+
+.card.game-theme {
+  background: rgba(255, 248, 220, 0.95);
+  border: 3px solid #8b5e3c;
+  border-radius: 12px;
+  box-shadow: 0 0 15px rgba(0,0,0,0.3);
+}
+
+.card-header.game-theme {
+  background: linear-gradient(to right, #8b5e3c, #c9a66b);
+  color: #fff;
+  font-weight: bold;
+  text-shadow: 1px 1px 2px #000;
+  border-bottom: 2px solid #6e4b2a;
+}
+
+.btn.game-theme {
+  background: linear-gradient(to bottom, #d4af37, #b8860b);
+  border: 2px solid #8b5e3c;
+  color: #fff;
+  font-weight: bold;
+  text-shadow: 1px 1px 1px #000;
+  border-radius: 8px;
+}
+
+.btn.game-theme:hover {
+  background: linear-gradient(to bottom, #ffd700, #daa520);
+  transform: scale(1.05);
+}
+
+.todo-item.game-theme {
+  background: #fff8dc;
+  border: 2px dashed #8b5e3c;
+  font-family: 'MedievalSharp', cursive;
+}
+
+/* ===================================
+   カラーピッカー UI
+=================================== */
 .color-picker {
   display: flex;
   justify-content: center;
   gap: 10px;
+  margin-top: 1rem;
 }
 
 .color-swatch {
@@ -32,308 +80,208 @@
   border-color: #333;
 }
 
-.color-picker.text-center.mb-3 {
-    margin-top:1rem;
-}
-
-body {
-    background: url('/images/parchment-bg.jpg') no-repeat center center fixed;
-    background-size: cover;
-    font-family: 'Cinzel', serif;
-    color: #3e2f1c;
-}
-
-/* カード風UI */
-.card {
-    background: rgba(255, 248, 220, 0.95); /* parchment風 */
-    border: 3px solid #8b5e3c;
-    border-radius: 12px;
-    box-shadow: 0 0 15px rgba(0,0,0,0.3);
-}
-
-/* ヘッダー装飾 */
-.card-header {
-    background: linear-gradient(to right, #8b5e3c, #c9a66b);
-    color: #fff;
-    font-weight: bold;
-    text-shadow: 1px 1px 2px #000;
-    border-bottom: 2px solid #6e4b2a;
-}
-
-/* ボタン風装飾 */
-.btn {
-    background: linear-gradient(to bottom, #d4af37, #b8860b);
-    border: 2px solid #8b5e3c;
-    color: #fff;
-    font-weight: bold;
-    text-shadow: 1px 1px 1px #000;
-    border-radius: 8px;
-}
-
-.btn:hover {
-    background: linear-gradient(to bottom, #ffd700, #daa520);
-    transform: scale(1.05);
-}
-
-/* TODOアイテム風装飾 */
-.todo-item {
-    background: #fff8dc;
-    border: 2px dashed #8b5e3c;
-    padding: 1rem;
-    border-radius: 8px;
-    font-family: 'MedievalSharp', cursive;
-}
-
-/* チェックボックスを剣アイコン風に */
-.form-check-input {
-    appearance: none;
-    width: 24px;
-    height: 24px;
-    background: url('/images/sword-icon.png') no-repeat center center;
-    background-size: contain;
-    cursor: pointer;
-}
-
-/* TODOアプリケーションのカスタムスタイル */
-
-/* 基本設定 */
+/* ===================================
+   TODOアプリ基本スタイル
+=================================== */
 :root {
-    --primary-color: #0d6efd;
-    --success-color: #198754;
-    --danger-color: #dc3545;
-    --gray-light: #f8f9fa;
-    --gray-medium: #6c757d;
-    --transition-speed: 0.3s;
+  --primary-color: #0d6efd;
+  --success-color: #198754;
+  --danger-color: #dc3545;
+  --gray-light: #f8f9fa;
+  --gray-medium: #6c757d;
+  --transition-speed: 0.3s;
 }
 
-/* レスポンシブフォントサイズ */
 html {
-    font-size: 14px;
+  font-size: 14px;
 }
 
-@media (min-width: 576px) {
-    html {
-        font-size: 15px;
-    }
-}
+@media (min-width: 576px) { html { font-size: 15px; } }
+@media (min-width: 768px) { html { font-size: 16px; } }
 
-@media (min-width: 768px) {
-    html {
-        font-size: 16px;
-    }
-}
-
-/* ボディのスタイル */
 body {
-    background-color: var(--gray-light);
-    min-height: 100vh;
-    display: flex;
-    align-items: center;
+  background-color: var(--gray-light);
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
 }
 
-/* カードのスタイル */
 .card {
-    border: none;
-    border-radius: 0.5rem;
-    overflow: hidden;
+  border: none;
+  border-radius: 0.5rem;
+  overflow: hidden;
 }
 
 .card-header {
-    border-bottom: none;
-    padding: 1.5rem;
+  border-bottom: none;
+  padding: 1.5rem;
 }
 
 .card-body {
-    padding: 1.5rem;
+  padding: 1.5rem;
 }
 
-/* TODOリストのスタイル */
 .todo-list {
-    max-height: 400px;
-    overflow-y: auto;
+  max-height: 400px;
+  overflow-y: auto;
 }
 
-/* スクロールバーのカスタマイズ */
 .todo-list::-webkit-scrollbar {
-    width: 8px;
+  width: 8px;
 }
-
 .todo-list::-webkit-scrollbar-track {
-    background: var(--gray-light);
-    border-radius: 4px;
+  background: var(--gray-light);
+  border-radius: 4px;
 }
-
 .todo-list::-webkit-scrollbar-thumb {
-    background: #dee2e6;
-    border-radius: 4px;
+  background: #dee2e6;
+  border-radius: 4px;
 }
-
 .todo-list::-webkit-scrollbar-thumb:hover {
-    background: #ced4da;
+  background: #ced4da;
 }
 
-/* TODOアイテムのスタイル */
 .todo-item {
-    background-color: white;
-    border: 1px solid #dee2e6;
-    border-radius: 0.5rem;
-    padding: 1rem;
-    margin-bottom: 0.75rem;
-    transition: all var(--transition-speed);
+  background-color: white;
+  border: 1px solid #dee2e6;
+  border-radius: 0.5rem;
+  padding: 1rem;
+  margin-bottom: 0.75rem;
+  transition: all var(--transition-speed);
+  animation: fadeIn 0.3s ease-out;
 }
 
 .todo-item:hover {
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-    transform: translateY(-1px);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  transform: translateY(-1px);
 }
 
-/* 完了したTODOのスタイル */
 .todo-item.completed {
-    background-color: #f8f9fa;
-    opacity: 0.7;
+  background-color: #f8f9fa;
+  opacity: 0.7;
 }
-
 .todo-item.completed .todo-title {
-    text-decoration: line-through;
-    color: var(--gray-medium);
+  text-decoration: line-through;
+  color: var(--gray-medium);
 }
 
-/* チェックボックスのカスタマイズ */
+.todo-title {
+  font-size: 1rem;
+  word-break: break-word;
+}
+
+.todo-actions {
+  display: flex;
+  gap: 0.25rem;
+  opacity: 0;
+  transition: opacity var(--transition-speed);
+}
+.todo-item:hover .todo-actions {
+  opacity: 1;
+}
+@media (max-width: 767px) {
+  .todo-actions {
+    opacity: 1;
+  }
+}
+
 .form-check-input {
-    width: 1.25rem;
-    height: 1.25rem;
-    margin-top: 0.125rem;
-    cursor: pointer;
+  width: 1.25rem;
+  height: 1.25rem;
+  margin-top: 0.125rem;
+  cursor: pointer;
+}
+.form-check-input.sword {
+  appearance: none;
+  width: 24px;
+  height: 24px;
+  background: url('/images/sword-icon.png') no-repeat center center;
+  background-size: contain;
 }
 
 .form-check-label {
-    margin-left: 0.5rem;
-    cursor: pointer;
-    flex: 1;
+  margin-left: 0.5rem;
+  cursor: pointer;
+  flex: 1;
 }
 
-/* TODOタイトル */
-.todo-title {
-    font-size: 1rem;
-    word-break: break-word;
-}
-
-/* TODOアクション */
-.todo-actions {
-    display: flex;
-    gap: 0.25rem;
-    opacity: 0;
-    transition: opacity var(--transition-speed);
-}
-
-.todo-item:hover .todo-actions {
-    opacity: 1;
-}
-
-/* モバイルでは常に表示 */
-@media (max-width: 767px) {
-    .todo-actions {
-        opacity: 1;
-    }
-}
-
-/* ボタンのカスタマイズ */
 .btn {
-    transition: all var(--transition-speed);
+  transition: all var(--transition-speed);
 }
-
 .btn-sm {
-    padding: 0.25rem 0.5rem;
-    font-size: 0.875rem;
+  padding: 0.25rem 0.5rem;
+  font-size: 0.875rem;
 }
 
-/* フィルターボタン */
 .btn-group {
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
-
 .btn-check:checked + .btn-outline-primary {
-    background-color: var(--primary-color);
-    border-color: var(--primary-color);
+  background-color: var(--primary-color);
+  border-color: var(--primary-color);
 }
 
-/* バッジ */
 .badge {
-    font-size: 0.75rem;
-    padding: 0.25rem 0.5rem;
+  font-size: 0.75rem;
+  padding: 0.25rem 0.5rem;
 }
 
-/* 入力フィールド */
 .form-control:focus {
-    border-color: var(--primary-color);
-    box-shadow: 0 0 0 0.2rem rgba(13, 110, 253, 0.25);
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 0.2rem rgba(13, 110, 253, 0.25);
 }
 
-/* タッチデバイス向けの調整 */
-@media (hover: none) {
-    .btn {
-        min-height: 44px;
-    }
-    
-    .form-control {
-        min-height: 44px;
-        font-size: 16px; /* iOSのズーム防止 */
-    }
-}
-
-/* アニメーション */
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-        transform: translateY(10px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-.todo-item {
-    animation: fadeIn 0.3s ease-out;
-}
-
-/* ユーティリティクラス */
 .text-muted {
-    color: var(--gray-medium) !important;
+  color: var(--gray-medium) !important;
 }
 
-/* 空のリスト表示 */
 .todo-list .text-center {
-    padding: 3rem 1rem;
+  padding: 3rem 1rem;
 }
 
-/* 小さい画面でのパディング調整 */
 @media (max-width: 575px) {
-    .card-header,
-    .card-body {
-        padding: 1rem;
-    }
-    
-    .todo-item {
-        padding: 0.75rem;
-    }
+  .card-header,
+  .card-body {
+    padding: 1rem;
+  }
+  .todo-item {
+    padding: 0.75rem;
+  }
 }
 
-/* プリント時のスタイル */
+@media (hover: none) {
+  .btn {
+    min-height: 44px;
+  }
+  .form-control {
+    min-height: 44px;
+    font-size: 16px;
+  }
+}
+
 @media print {
-    body {
-        background-color: white;
-    }
-    
-    .btn,
-    .todo-actions,
-    .btn-group {
-        display: none !important;
-    }
-    
-    .todo-item {
-        page-break-inside: avoid;
-        border: 1px solid #dee2e6;
-        margin-bottom: 0.5rem;
-    }
+  body {
+    background-color: white;
+  }
+  .btn,
+  .todo-actions,
+  .btn-group {
+    display: none !important;
+  }
+  .todo-item {
+    page-break-inside: avoid;
+    border: 1px solid #dee2e6;
+    margin-bottom: 0.5rem;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
