@@ -13,5 +13,5 @@
 
 ## 🚀 起動方法
 
-```bash
+```bash,PowerShell
 ./mvnw spring-boot:run
