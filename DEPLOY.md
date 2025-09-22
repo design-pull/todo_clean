@@ -1,122 +1,68 @@
-# Render.com デプロイガイド
+# 🚀 DEPLOY.md - TODO Demo App Deployment Guide
 
-このドキュメントは、Spring Boot TODO アプリケーションを Render.com にデプロイする手順を説明します。
+このドキュメントでは、TODO Demo App を GitHub Pages および Render.com にデプロイする方法をまとめています。
 
-## 前提条件
+---
 
-- GitHub アカウント
-- Render.com アカウント
-- プロジェクトが GitHub リポジトリにプッシュされている
+## 📦 プロジェクト概要
 
-## デプロイ手順
+- **アプリ名**：TODO Demo App  
+- **技術構成**：Java (Spring Boot), HTML/CSS/JS (Bootstrap), Docker  
+- **GitHub リポジトリ**：[https://github.com/design-pull/todo_clean](https://github.com/design-pull/todo_clean)
 
-### 1. Render.com での設定
+---
 
-1. [Render.com](https://render.com)にログイン
-2. ダッシュボードで「New +」をクリック
-3. 「Web Service」を選択
-4. 「Build and deploy from a Git repository」を選択
-5. GitHub リポジトリを接続・選択
+## 🌐 GitHub Pages での公開（静的UI）
 
-### 2. サービス設定
+### 対象：HTML/CSS/JS の静的UI部分のみ
 
-以下の設定を行います：
-
-- **Name**: `todo-demo` (または任意の名前)
-- **Runtime**: `Docker`
-- **Instance Type**: `Free` (無料プラン使用時)
-- **Auto-Deploy**: `No` (手動デプロイ)
-
-### 3. 環境変数の設定
-
-以下の環境変数を設定します：
-
-| 変数名                   | 値     | 説明                                    |
-| ------------------------ | ------ | --------------------------------------- |
-| `SPRING_PROFILES_ACTIVE` | `prod` | プロダクションプロファイルを有効化      |
-| `PORT`                   | `8080` | アプリケーションポート (通常は自動設定) |
-
-### 4. デプロイの実行
-
-1. 「Create Web Service」をクリック
-2. 初回ビルドが開始されます（5-10 分程度）
-3. ビルド完了後、アプリケーションが自動起動
-
-## デプロイ後の確認
-
-### アクセス確認
-
-デプロイ完了後、以下の URL でアプリケーションにアクセスできます：
-
-```
-https://[サービス名].onrender.com
-```
-
-### ログの確認
-
-Render.com のダッシュボードで以下を確認できます：
-
-- デプロイログ
-- アプリケーションログ
-- リソース使用状況
-
-## 手動デプロイ
-
-コードを更新した場合は、Render.com のダッシュボードから手動でデプロイを実行します：
-
-1. Render.com のダッシュボードにアクセス
-2. 対象のサービスを選択
-3. 「Manual Deploy」ボタンをクリック
-4. 「Deploy latest commit」を選択してデプロイを実行
-
-## トラブルシューティング
-
-### よくある問題と解決方法
-
-#### 1. ビルドエラー
-
-- **原因**: Dockerfile の設定ミスまたは依存関係の問題
-- **解決**: ビルドログを確認し、エラーメッセージに従って修正
-
-#### 2. アプリケーションが起動しない
-
-- **原因**: ポート設定またはプロファイル設定の問題
-- **解決**: 環境変数の設定を確認
-
-#### 3. 初回起動が遅い
-
-- **原因**: 無料プランでの制限
-- **解決**: 正常な動作です。初回は時間がかかります
-
-### ログの確認方法
+1. `docs/` フォルダを作成し、`index.html` と `static/` をコピー
+2. GitHub にプッシュ：
 
 ```bash
-# Render CLIを使用してログを確認
-render logs -s [サービスID]
-```
+git add docs
+git commit -m "GitHub Pages公開用ファイル追加"
+git push
 
-## パフォーマンス最適化
+GitHub の「Settings」→「Pages」で以下を設定：
 
-### 無料プランの制限
+項目	設定値
+Branch	main
+Folder	/docs
+公開URLが表示される（例：https://design-pull.github.io/todo_clean/）
 
-- 15 分間非アクティブでスリープモードに移行
-- 月間 750 時間の稼働時間制限
-- CPU・メモリの制限
+🖥️ Render.com での公開（Javaバックエンド）
+対象：Spring Boot バックエンド含む完全なWebアプリ
+Render にログイン → 「New Web Service」を作成
 
-### 最適化のヒント
+GitHub リポジトリ todo_clean を選択
 
-1. **キャッシュの活用**: Thymeleaf テンプレートキャッシュを有効化
-2. **圧縮の有効化**: gzip 圧縮でレスポンスサイズを削減
-3. **ログレベルの調整**: 本番環境では適切なログレベルを設定
+以下の設定を入力：
 
-## セキュリティ考慮事項
+項目	設定値
+Environment	Docker
+Branch	main
+Root Directory	（空欄）
+環境変数を設定（任意）：
 
-- HTTPS 通信が自動的に有効化
-- セキュアクッキーの設定を有効化
-- 機密情報は環境変数で管理
+変数名	値
+SPRING_PROFILES_ACTIVE	prod
+JAVA_OPTS	-Xmx512m -Xms256m
+application.properties に以下があることを確認：
 
-## サポート
+properties
+server.port=${PORT:8080}
+spring.profiles.active=${SPRING_PROFILES_ACTIVE:prod}
+公開URL（例）：https://todo-clean.onrender.com
 
-- [Render.com Documentation](https://render.com/docs)
-- [Spring Boot on Render Guide](https://render.com/docs/spring-boot)
-- [Community Forum](https://community.render.com)
+🧪 よくあるエラーと対処法
+エラー	原因	対処法
+502 Bad Gateway	ポート設定が不正	server.port=${PORT:8080} を追加
+.jar 実行失敗	Dockerfile の CMD が不一致	.jar ファイル名を確認
+メモリ不足	JVM がRenderの制限を超えている	JAVA_OPTS を設定
+✨ まとめ
+GitHub Pages → UIだけ公開したいときに便利
+
+Render.com → Javaの処理も含めて完全公開したいときに最適
+
+両方使い分けることで、デモと実装を分離して見せられる！
